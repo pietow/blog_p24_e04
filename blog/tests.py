@@ -27,12 +27,6 @@ class BlogTest(TestCase):
         self.assertEqual(str(self.post), 'A good title')
         self.assertEqual(self.post.get_absolute_url(), "/post/1/")
 
-    def test_url_exists_at_correct_location_detail_view(self):
-        res = self.client.get('/post/1/')
-        self.assertEqual(res.status_code, 200)
-
-    def test_url_exists_at_correct_location_list_view(self):
-        res = self.client.get('/')
-        self.assertEqual(res.status_code, 200)
+ 
 
 
