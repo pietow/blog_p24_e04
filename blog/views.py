@@ -1,5 +1,5 @@
 from django.shortcuts import render, Http404, get_object_or_404
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from .models import Post
 
 class BlogListView(ListView):
@@ -31,5 +31,41 @@ class  BlogDetailTemplateView(TemplateView):
         post = get_object_or_404(Post, pk=pk)
         return {'post': post}
 
+class BlogCreateView(CreateView):
+    model = Post
+    template_name = "post_new.html"
+    fields = ['title', "author", "body"]
 
 
+from django.forms import ModelForm
+from django.shortcuts import redirect
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', "author", "body"]
+
+def blog_create_view(request):
+    if request.method == "POST":
+        form = PostForm(request.POST) 
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    else:
+        form = PostForm()
+    return render(request, "post_new.html", {"form": form})
+
+class BlogCreateTemplateView(TemplateView):
+    template_name = "post_new.html"
+
+    def get_context_data(self, **kwargs):
+        return {'form': PostForm()}
+
+    def post(self, request, *args, **kwargs):
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        return self.render_to_response({"form": form})
+
+    
