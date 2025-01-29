@@ -1,0 +1,13 @@
+<!-- templates/post_edit.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Edit post</h1>
+<form action="" method="post">
+    <div>{% csrf_token %}</div>
+    <div class='title'>{{ form.title }}</div>
+    {{ form.body }}
+    <input type="submit" value="Update">
+</form>
+{% endblock content %}

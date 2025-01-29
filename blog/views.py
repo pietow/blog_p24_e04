@@ -1,5 +1,6 @@
 from django.shortcuts import render, Http404, get_object_or_404
-from django.views.generic import ListView, DetailView, TemplateView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 from .models import Post
 
 class BlogListView(ListView):
@@ -45,6 +46,11 @@ class PostForm(ModelForm):
         model = Post
         fields = ['title', "author", "body"]
 
+class PostUpdateForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', "body"]
+
 def blog_create_view(request):
     if request.method == "POST":
         form = PostForm(request.POST) 
@@ -69,3 +75,29 @@ class BlogCreateTemplateView(TemplateView):
         return self.render_to_response({"form": form})
 
     
+class BlogUpdateView(UpdateView):
+    model = Post
+    template_name = 'post_edit.html'
+    fields = ["title", "body"]
+
+
+def post_update_view(request, pk):
+    post =get_object_or_404(Post, pk=pk) # Post.objects.get(pk=pk)
+
+    if request.method == "POST":
+        form = PostUpdateForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save()
+            # print('POST: ',post)
+            # print('POST REQUEST: ', request.POST)
+            return redirect('post_detail', slug=post.slug)
+    elif request.method == "GET":
+        form = PostUpdateForm(instance=post)
+
+    return render(request, 'post_edit.html', {'form': form })
+
+
+class BlogDeleteView(DeleteView):
+    model = Post
+    template_name = "post_delete.html"
+    success_url = reverse_lazy("home")
