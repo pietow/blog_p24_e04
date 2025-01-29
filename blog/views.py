@@ -37,7 +37,7 @@ class BlogCreateView(CreateView):
     template_name = "post_new.html"
     fields = ['title', "author", "body"]
 
-
+from django import forms
 from django.forms import ModelForm
 from django.shortcuts import redirect
 
@@ -50,6 +50,10 @@ class PostUpdateForm(ModelForm):
     class Meta:
         model = Post
         fields = ['title', "body"]
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'my-input-class', }),
+            'body': forms.Textarea(attrs={'class': 'my-textarea-class'}),
+        }
 
 def blog_create_view(request):
     if request.method == "POST":
