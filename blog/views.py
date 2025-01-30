@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, Http404, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
@@ -7,9 +8,14 @@ class BlogListView(ListView):
     template_name = "home.html"
     model = Post
 
-class BlogDetailView(DetailView):
+class BlogDetailView(LoginRequiredMixin, DetailView):
     template_name = "post_detail.html"
     model = Post
+    #login_url = reverse_lazy('login')
+
+    def get_context_data(self, **kwargs):
+        print(self.login_url)
+        return super().get_context_data(**kwargs)
 
 def blog_detail_view(request, pk):
     print(pk)
