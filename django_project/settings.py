@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!ue2cikrt@2xc&10yt82^@1j#2*fs=jpjq@li4a_n&lymg17gz
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5500']
 
 # Application definition
 
@@ -123,3 +123,5 @@ STATIC_URL = 'static/'  # WEB URL
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'home'
