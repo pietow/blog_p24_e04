@@ -49,6 +49,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Register your custom middleware
+    'blog.middleware.ProtectSpecificRoutesMiddleware',
 ]
 
 ROOT_URLCONF = 'django_project.urls'
