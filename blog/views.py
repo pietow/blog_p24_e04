@@ -1,9 +1,23 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, Http404, get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 from .forms import PostForm, PostUpdateForm
 from .models import Post
+
+
+class ThemeView(View):
+    def get(self, request):
+        theme = request.session.get('theme', 'light')
+        if theme == 'light':
+            request.session['theme'] = 'dark'
+        else:
+            request.session['theme'] = 'light'
+        print(request.META.get('HTTP_REFERER'))
+        return redirect(request.META.get('HTTP_REFERER'))
+
+
 
 class BlogListView(ListView):
     template_name = "home.html"

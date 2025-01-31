@@ -1,0 +1,116 @@
+/* Global Styles */
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    background-color: #1e1e1e; /* Dark background */
+    color: #e0e0e0; /* Light grey text */
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+/* Header Styles */
+header {
+    border-bottom: 1px solid #444; /* Subtle dark border */
+    margin-bottom: 2rem;
+    display: flex;
+    padding-bottom: 1rem;
+}
+
+header h1 a {
+    color: #ff6b6b; /* Warm red color for contrast */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+header h1 a:hover {
+    color: #ff4747; /* Slightly brighter on hover */
+}
+
+/* Navigation */
+.nav-left {
+    margin-right: auto;
+}
+
+.nav-right {
+    display: flex;
+    padding-top: 2rem;
+}
+
+.nav-right a {
+    color: #8ab4f8; /* Soft blue for navigation links */
+    text-decoration: none;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-right a:hover {
+    color: #69a1ff; /* Lighter blue on hover */
+}
+
+/* Post Entry */
+.post-entry {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #2a2a2a; /* Dark grey background for posts */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    transition: background-color 0.3s ease;
+}
+
+.post-entry:hover {
+    background-color: #333; /* Slightly lighter on hover */
+}
+
+.post-entry h2 {
+    margin: 0.5rem 0;
+    color: #e0e0e0; /* Keep text light grey */
+    font-weight: 700;
+}
+
+.post-entry h2 a,
+.post-entry h2 a:visited {
+    color: #8ab4f8; /* Soft blue for post titles */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-entry h2 a:hover {
+    color: #ff6b6b; /* Red on hover for contrast */
+}
+
+.post-entry p {
+    margin: 0;
+    font-weight: 400;
+    color: #b0b0b0; /* Slightly darker grey for regular text */
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid #444;
+    padding: 1rem 0;
+    text-align: center;
+    color: #888;
+}
+
+footer a {
+    color: #ff6b6b;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ff4747;
+}
+
+/* Buttons */
+button {
+    background-color: #ff6b6b; /* Warm red background */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff4747; /* Brighter on hover */
+}

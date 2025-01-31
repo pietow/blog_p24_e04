@@ -5,6 +5,7 @@ from .views import (BlogListView, BlogDetailView, BlogCreateView,
                         BlogUpdateView,
                         post_update_view,
                         BlogDeleteView,
+                        ThemeView,
                     )
 
 urlpatterns = [
@@ -17,5 +18,6 @@ urlpatterns = [
     # path("post/<int:pk>/edit/", BlogUpdateView.as_view(), name="post_edit"),
     path("post/<int:pk>/edit/", post_update_view, name="post_edit"),
     path("post/<int:pk>/delete/", BlogDeleteView.as_view(), name="post_delete"),
+    path('theme/', ThemeView.as_view(), name='toggle_theme')
 
 ]

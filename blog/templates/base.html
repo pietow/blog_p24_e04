@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if request.session.theme == 'dark' %}
+    <link rel="stylesheet" href="{% static 'dark.css' %}">
+    {% else %}
     <link rel="stylesheet" href="{% static 'app_styles.css' %}">
+    {% endif %}
     <title>Django blog</title>
 </head>
 <body>
@@ -23,6 +27,7 @@
         <a href="{% url 'login' %}">Log In</a>
         <a href="{% url 'signup' %}">Sign Up</a>
     {% endif %}
+    <a href="{% url 'toggle_theme' %}">Toggle Theme</a>
     </header>
 
     {%block content%}
