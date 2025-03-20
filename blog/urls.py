@@ -21,3 +21,4 @@ urlpatterns = [
     path('theme/', ThemeView.as_view(), name='toggle_theme')
 
 ]
+#test new
